@@ -32,6 +32,11 @@
     the API allows to analyze such metrics together. *)
 
 module OLS : sig
+  module Ci95 : sig
+    type t = private { r: float; l: float }
+    val pp : t Fmt.t
+  end
+
   type t
 
   val ols :
@@ -47,6 +52,7 @@ module OLS : sig
   val responder : t -> string
   val estimates : t -> float list option
   val r_square : t -> float option
+  val ci95 : t -> Ci95.t list option
 end
 
 module RANSAC : sig

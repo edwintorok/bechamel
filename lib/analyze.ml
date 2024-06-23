@@ -164,6 +164,11 @@ module OLS = struct
     | Ok { estimates; _ } -> Some (Array.to_list estimates)
     | Error _ -> None
 
+  let ci95 { value; _ } =
+    match value with
+    | Ok { ci95; _ } -> Option.map Array.to_list ci95
+    | Error _ -> None
+
   let r_square { value; _ } =
     match value with Ok { r_square; _ } -> r_square | Error _ -> None
 end
